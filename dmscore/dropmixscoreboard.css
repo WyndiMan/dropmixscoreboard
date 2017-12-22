@@ -1,0 +1,169 @@
+	@font-face {
+		font-family: AvenirBold;
+		src: url('fonts/avenir-85-heavy/avenir-85-heavy-webfont.woff2') format('woff2'),
+			 url('fonts/avenir-85-heavy/avenir-85-heavy-webfont.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: AvenirRoman;
+		src: url('fonts/avenir-55-roman/avenir-webfont.woff2') format('woff2'),
+			 url('fonts/avenir-55-roman/avenir-webfont.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+/* 	Body Background Color is the key color to knock out for the transparancy effect.
+	#660066 does not clash with the Y/R/B/G colors of the bonus slot icon on the scoreboard.
+	Use of any other color may result in part of the bonus slot icon getting keyed out as well.
+	If changing the body background color, consider also changing the PointsGained color. */
+	body {
+		background-color: #660066;
+	}
+	
+	td { /* All visible text is encapsulated by <td>. Do not edit! */
+		color: white;
+		padding: 0px;
+	}
+	
+/* Headline Banner Style */
+	
+	#HeadlineBanner {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: -1;
+	}
+	#HeadlineInfo {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 1280px;
+		height: 82px;
+	}
+	td.WinCount {
+		font-family: AvenirBold;
+		line-height: 0%;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 72px;
+	}
+	td.PlayerName {
+		font-family: AvenirRoman;
+		line-height: 0%;
+		vertical-align: middle;
+		font-size: 28px;
+	}
+	td.HeadlineTitle {
+		font-family: AvenirRoman;
+		line-height: 0%;
+		vertical-align: middle;
+		font-size: 19px;
+	}	
+	
+/* Scoreboard Display */
+
+	span.scoretext {
+		font-family: AvenirBold;
+		font-size: 250%;
+	}
+	td.totalscore {
+		line-height: 1;
+		text-align: center;
+		font-size: 250%;
+	}
+	td.iconbox {
+	}
+	td.scorebox {
+		width: 52px;
+		text-align: right;
+		line-height: 0.9;
+	}
+	td.dmspinbox {
+		text-align: center;
+	}
+	td.spacer {
+		width: 15px;
+		background: linear-gradient(to right, black, #333333, black);
+	}
+/* 	Consider also changing the PointsGained color if changing the Body Background color. */
+	#P1PointsGained,
+	#P2PointsGained {
+		color: lime;
+	}
+	#P1PointsLost,
+	#P2PointsLost {
+		color: red;
+	}
+	#ScoreboardP1Display {
+		position: fixed;
+		top: 100px;
+		left: 130px;
+	}
+	#ScoreboardP2Display {
+		position: fixed;
+		top: 100px;
+		left: 890px;
+	}
+	#ScoreboardP1Background {
+		position: fixed;
+		top: 102px;
+		left: 100px;
+		z-index: -1;
+	}
+	#ScoreboardP2Background {
+		position: fixed;
+		top: 102px;		
+		left: 860px;
+		z-index: -1;
+	}
+
+/* Scoreboard Controls */
+
+	p.control_desc {
+		font-family: Arial,Verdana,sans-serif;
+		line-height: 0.05;
+	}	
+	#ScoreboardControlsMain {
+		position: fixed;
+		top: 440px;
+		left: 465px;
+	}
+	#ScoreboardControls {
+		display: block;
+	}
+	#P1ScoreboardControls {
+		position: fixed;
+		top: 435px;
+		left: 90px;
+	}
+	#HeadlineControls {
+		position: fixed;
+		top: 470px;
+		left: 450px;
+	}
+	#P2ScoreboardControls {
+		position: fixed;
+		top: 435px;
+		left: 850px;
+	}
+	input.DnButton {
+		background-color: #660066;
+		border: 1px;
+		color: lightgray;
+	}	
+	
+/*  Makes clickable text areas (and pretty much everything else) non-selectable. */		
+	td.scoreboardbackground,
+	td.totalscore,
+	td.scorebox,
+	td.iconbox,
+	#AllHeadlineDisplays,
+	#AllScoreboardDisplays {
+		-webkit-user-select: none; /* Chrome, Opera, Safari */
+		-moz-user-select: none; /* Firefox 2+ */
+		-ms-user-select: none; /* IE 10+ */
+		user-select: none; /* Standard syntax */
+	}
+
+	

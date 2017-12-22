@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<head>
+	<title>Dropmix Scoreboard</title>
+	<link rel="stylesheet" type="text/css" href="dmscore/dropmixscoreboard.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- Headline Display: Shows Win Count, Player Names, Title Across Top -->
+	<div id="AllHeadlineDisplays">
+		<img id="HeadlineBanner" src="dmscore/images/headlinebanner.png" />
+		<table id="HeadlineInfo">
+			<tr height=24>
+				<td width=78 rowspan=3 class="WinCount" id="P1WinCount" onclick="dmHeadline.p1RoundWinUp();">0</td>
+				<td width=18 rowspan=3></td>
+				<td width=341 rowspan=2 class="PlayerName" id="P1Name" onclick="dmHeadline.p1RoundWinDn();" style="text-align: left;">PLAYER 1 NAME</td>
+				<td width=29 rowspan=2></td>
+				<td width=328 rowspan=1 class="HeadlineTitle" id="HeadlineTitle" style="text-align: center;">MAIN TITLE</td>
+				<td width=29 rowspan=2></td>
+				<td width=341 rowspan=2 class="PlayerName" id="P2Name" onclick="dmHeadline.p2RoundWinDn();" style="text-align: right;">PLAYER 2 NAME</td>
+				<td width=18 rowspan=3></td>
+				<td width=78 rowspan=3 class="WinCount" id="P2WinCount" onclick="dmHeadline.p2RoundWinUp();">0</td>		
+			</tr>
+			<tr height=29></tr>
+			<tr height=23></tr>
+		</table>
+	</div>		
+<!-- Scoreboard Displays: Shows Black Circle Background, Main Points, Category Points/Icons. -->
+	<div id="AllScoreboardDisplays">
+		<img id="ScoreboardP1Background" class="scoreboardbackground" src="dmscore/images/scorebackground.png" />
+		<img id="ScoreboardP2Background" class="scoreboardbackground" src="dmscore/images/scorebackground.png" />
+		<table id="ScoreboardP1Display">
+			<tr>
+				<td colspan=5 class="totalscore">
+					<span class="scoretext" id="P1TotalScore">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/textgain.png" />
+				</td>
+				<td class="scorebox">
+					<span class="scoretext" id="P1PointsGained">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td class="iconbox">
+					<img src="dmscore/images/textloss.png" />
+				</td>		
+				<td class="scorebox">
+					<span class="scoretext" id="P1PointsLost">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/cardpoints.png" onclick="dmScore.p1CardPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P1CardPoints" onclick="dmScore.p1CardPointDn();">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td colspan=2></td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/bonuspoints.png" onclick="dmScore.p1BonusPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P1SlotBonusPoints" onclick="dmScore.p1BonusPointDn();">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td class="iconbox">
+					<img src="dmscore/images/spinnerminuspoints.png" onclick="dmScore.p1EqLossPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P1EQminusPoints" onclick="dmScore.p1EqLossPointDn();">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/fxpluspoints.png" onclick="dmScore.p1FxGainPointUp();" />
+				</td>
+				<td class="scorebox">
+					<span class="scoretext" id="P1FXpoints" onclick="dmScore.p1FxGainPointDn();">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td class="iconbox">
+					<img src="dmscore/images/fxminuspoints.png" onclick="dmScore.p1FxLossPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P1FXminusPoints" onclick="dmScore.p1FxLossPointDn();">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="dmspinbox" colspan=5>
+					<img src="dmscore/images/dmspincounter.png" onclick="dmScore.p1DmSpinUp();" />
+					<span class="scoretext" id="P1DmSpins" onclick="dmScore.p1DmSpinDn();">0</span>
+				</td>
+			</tr>
+		</table>
+		<table id="ScoreboardP2Display">
+			<tr>
+				<td colspan=5 class="totalscore">
+					<span class="scoretext" id="P2TotalScore">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/textgain.png" />
+				</td>
+				<td class="scorebox">
+					<span class="scoretext" id="P2PointsGained">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td class="iconbox">
+					<img src="dmscore/images/textloss.png" />
+				</td>		
+				<td class="scorebox">
+					<span class="scoretext" id="P2PointsLost">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/cardpoints.png" onclick="dmScore.p2CardPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P2CardPoints" onclick="dmScore.p2CardPointDn();">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td colspan=2></td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/bonuspoints.png" onclick="dmScore.p2BonusPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P2SlotBonusPoints" onclick="dmScore.p2BonusPointDn();">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td class="iconbox">
+					<img src="dmscore/images/spinnerminuspoints.png" onclick="dmScore.p2EqLossPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P2EQminusPoints" onclick="dmScore.p2EqLossPointDn();">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="iconbox">
+					<img src="dmscore/images/fxpluspoints.png" onclick="dmScore.p2FxGainPointUp();" />
+				</td>
+				<td class="scorebox">
+					<span class="scoretext" id="P2FXpoints" onclick="dmScore.p2FxGainPointDn();">0</span>
+				</td>
+				<td class="spacer"></td>
+				<td class="iconbox">
+					<img src="dmscore/images/fxminuspoints.png" onclick="dmScore.p2FxLossPointUp();" />
+				</td>	
+				<td class="scorebox">
+					<span class="scoretext" id="P2FXminusPoints" onclick="dmScore.p2FxLossPointDn();">0</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="dmspinbox" colspan=5>
+					<img src="dmscore/images/dmspincounter.png" onclick="dmScore.p2DmSpinUp();" />
+					<span class="scoretext" id="P2DmSpins" onclick="dmScore.p2DmSpinDn();">0</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+<!-- Scoreboard Controls: Controls Scoreboard and Headline Information -->
+	<div id="ScoreboardControlsMain">
+		<table style="width: 300px;">
+			<tr>
+				<td>
+					<input id="ScoreboardToggle" type="button" style="width: 300px;" value="Hide Scoreboard" onclick="dmControl.toggleScoreboard();">
+				</td>
+			</tr>
+			<!--<tr>
+				<td style="text-align: center;">
+					<input id="PostgameToggle" type="button" style="width: 125px;" value="Show Postgame" class="DnButton" onclick="dmControl.togglePostgame();">
+				</td>	
+			</tr>-->
+			<tr>				
+				<td>
+					<input type="button" value="Reset Scores" onclick="dmScore.resetScore();">
+					<input type="button" value="Reset Wins" onclick="dmHeadline.resetWinCount();">
+					<input type="button" value="Reset All" onclick="dmControl.resetAllScores();">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="control_desc">Main Title:&nbsp;
+					<input id="HeadlineTitleInput" type="text" value="MAIN TITLE">
+					<input id="HeadlineUpdateButton" type="button" value="Update All" onclick="dmHeadline.updateAll();"></p>
+				</td>
+			</tr>
+		</table>	
+	</div>
+	<div id="ScoreboardControls">
+		<table id="P1ScoreboardControls">
+			<tr>
+				<td><p class="control_desc">P1 Name:</p></td>
+				<td colspan=3>
+					<input id="P1NameText" type="text" value="PLAYER 1 NAME">
+				</td>
+				<td>
+					<input type="button" value="Update" onclick="dmHeadline.p1Name();">
+				</td>
+			</tr>
+			<tr>
+				<td><p class="control_desc">Cards Played</p></td>
+				<td>
+					<input id="AddCardPt" type="button" value="Up" onclick="dmScore.p1CardPointUp();">
+					<input id="DelCardPt" type="button" value="Dn" onclick="dmScore.p1CardPointDn();" class="DnButton">
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>	
+			</tr>
+			<tr>
+				<td><p class="control_desc">Slot Bonuses</p></td>
+				<td>
+					<input id="AddBonusPt" type="button" value="Up" onclick="dmScore.p1BonusPointUp();">
+					<input id="AddBonusPt"  type="button" value="Dn" onclick="dmScore.p1BonusPointDn();" class="DnButton">
+				</td>
+				<td>&nbsp;</td>
+				<td><p class="control_desc">EQ Removals</p></td>
+				<td>
+					<input id="AddEQminusPt" type="button" value="Up" onclick="dmScore.p1EqLossPointUp();">
+					<input id="DelEQminusPt" type="button" value="Dn" onclick="dmScore.p1EqLossPointDn();" class="DnButton">
+				</td>
+			</tr>
+			<tr>
+				<td><p class="control_desc">FX Gains</p></td>
+				<td>
+					<input id="AddFXpt" type="button" value="Up" onclick="dmScore.p1FxGainPointUp();">
+					<input id="DelFXpt" type="button" value="Dn" onclick="dmScore.p1FxGainPointDn();" class="DnButton">
+				</td>
+				<td>&nbsp;</td>
+				<td><p class="control_desc">FX Losses</p></td>
+				<td>
+					<input id="AddFXminusPt" type="button" value="Up" onclick="dmScore.p1FxLossPointUp();">
+					<input id="DelFXminusPt" type="button" value="Dn" onclick="dmScore.p1FxLossPointDn();" class="DnButton">
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><p class="control_desc">DM Button</p></td>
+				<td>&nbsp;</td>
+				<td>
+					<input id="P1DmSpinsUp" type="button" value="Up" onclick="dmScore.p1DmSpinUp();">
+					<input id="P1DmSpinsDn" type="button" value="Dn" class="DnButton" onclick="dmScore.p1DmSpinDn();">
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><p class="control_desc">P1 Wins</p></td>
+				<td>
+					<input id="P1WinUp" type="button" value="Up" onclick="dmHeadline.p1RoundWinUp();">
+					<input id="P1WinDn" type="button" value="Dn" class="DnButton" onclick="dmHeadline.p1RoundWinDn();">
+				</td>
+				<td colspan=3></td>
+			</tr>
+		</table>
+		<table id="P2ScoreboardControls">
+			<tr>
+				<td><p class="control_desc">P2 Name:</p></td>
+				<td colspan=3>
+					<input id="P2NameText" type="text" value="PLAYER 2 NAME">
+				</td>
+				<td>
+					<input type="button" value="Update" onclick="dmHeadline.p2Name();">
+				</td>
+			</tr>
+			<tr>
+				<td><p class="control_desc">Cards Played</p></td>
+				<td>
+					<input id="AddCardPt" type="button" value="Up" onclick="dmScore.p2CardPointUp();">
+					<input id="DelCardPt" type="button" value="Dn" onclick="dmScore.p2CardPointDn();" class="DnButton">
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>	
+			</tr>
+			<tr>
+				<td><p class="control_desc">Slot Bonuses</p></td>
+				<td>
+					<input id="AddBonusPt" type="button" value="Up" onclick="dmScore.p2BonusPointUp();">
+					<input id="AddBonusPt"  type="button" value="Dn" onclick="dmScore.p2BonusPointDn();" class="DnButton">
+				</td>
+				<td>&nbsp;</td>
+				<td><p class="control_desc">EQ Removals</p></td>
+				<td>
+					<input id="AddEQminusPt" type="button" value="Up" onclick="dmScore.p2EqLossPointUp();">
+					<input id="DelEQminusPt" type="button" value="Dn" onclick="dmScore.p2EqLossPointDn();" class="DnButton">
+				</td>
+			</tr>
+			<tr>
+				<td><p class="control_desc">FX Gains</p></td>
+				<td>
+					<input id="AddFXpt" type="button" value="Up" onclick="dmScore.p2FxGainPointUp();">
+					<input id="DelFXpt" type="button" value="Dn" onclick="dmScore.p2FxGainPointDn();" class="DnButton">
+				</td>
+				<td>&nbsp;</td>
+				<td><p class="control_desc">FX Losses</p></td>
+				<td>
+					<input id="AddFXminusPt" type="button" value="Up" onclick="dmScore.p2FxLossPointUp();">
+					<input id="DelFXminusPt" type="button" value="Dn" onclick="dmScore.p2FxLossPointDn();" class="DnButton">
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><p class="control_desc">DM Button</p></td>
+				<td>&nbsp;</td>
+				<td>
+					<input id="P2DmSpinsUp" type="button" value="Up" onclick="dmScore.p2DmSpinUp();">
+					<input id="P2DmSpinsDn" type="button" value="Dn" class="DnButton" onclick="dmScore.p2DmSpinDn();">
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan=3></td>
+				<td><p class="control_desc" style="text-align: right;">P2 Wins&nbsp;&nbsp;&nbsp;</p></td>
+				<td>
+					<input id="P2WinUp" type="button" value="Up" onclick="dmHeadline.p2RoundWinUp();">
+					<input id="P2WinDn" type="button" value="Dn" class="DnButton" onclick="dmHeadline.p2RoundWinDn();">
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script src="dmscore/dropmixscoreboard.js"></script>
+</body>
